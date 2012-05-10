@@ -1,0 +1,174 @@
+
+/*
+	global popup rules.
+*/
+
+
+
+/*popup*/
+.popupPageFill {
+	display: none;
+	position: fixed;
+	background:#888;
+	background:rgba(0,0,0,.5);
+	z-index: 35;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.popupBorder {
+	border-radius: 10px;
+	position: relative;
+	background:#E6E6E6;
+	left: 50%;
+	padding: 10px;
+	top: 50%;
+}
+.popupExit {
+	position: absolute;
+	right: -15px;
+	top: -15px;
+	width: 46px;
+	height: 46px;
+	background: #444;
+	background: url(UIimages/exitPopup.png) no-repeat;
+	cursor: pointer;
+	z-index: 36;
+}
+h2.popupHeader {
+	margin: 0;
+	padding: 20px 0 20px 15px;
+	font-size: 25px;
+	font-family: "helvetica",arial;
+	background: #fff;
+	border-radius:5px 0 0 0;
+}
+
+.popupContent {
+	min-height: 300px;
+	max-height: 560px;
+	overflow: auto;
+	padding: 10px 15px;
+	position: relative;
+	border-radius:0 0 5px 5px;
+	background:url(../UIImages/ajaxLoading.gif) no-repeat center #fff;
+
+}
+.popupContent.loaded, .nestedPopupContent.loaded{
+	background-image: none;
+}  
+
+.ie8 .popupContent{
+	border:1px solid #ccc;
+	z-index:30;
+}
+
+
+.errorLoadingPopup{
+	padding:100px 0 0;
+	text-align:center;
+	font-size:25px;
+	color:#bbb;
+	font-weight:normal;
+}
+
+
+/*viewport fixes*/
+.popupBorder.viewPortLessThen800{
+	margin-top: -200px;
+}
+.popupBorder.viewPortLessThen800 .popupContent{
+	max-height: 450px;
+}
+.popupBorder.viewPortLessThen650{
+	margin-top: -200px;
+}
+.popupBorder.viewPortLessThen650 .popupContent{
+	max-height: 350px;
+}
+
+
+/*/popup*/
+
+
+/*popup for image only*/
+.imageWrapper{ text-align: center;}
+.imageWrapper img{ max-width:100%;} 
+/*complex rebates*/
+
+.popup870 {
+	margin: -280px 0 0 -440px;
+	width: 870px;
+	max-height: 620px;
+}
+.popup500, .viewRebates {
+	margin: -280px 0 0 -250px;
+	width: 500px;
+	max-height: 620px;
+}
+
+
+
+
+
+
+.nestedPopupContainer{
+	display: none;
+	width:100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;   
+	box-sizing: border-box;
+	position: absolute;
+	padding: 10px;
+	top:0;
+	left: 0;
+	z-index: 36;
+	background:#E6E6E6;
+	border-radius: 10px;
+	
+	
+
+	/*loading*/
+}
+
+h2.nestedPopupTitle{
+	margin: 0;
+	padding: 20px 0 10px 100px;
+	position: relative;
+	font-size: 25px;
+	color: #444;
+	background: white;
+	overflow: hidden;
+	border-radius: 5px 5px 0 0;	
+}
+.nestedPopupClose{
+	position: absolute;
+	top: 15px;
+	left: 9px;
+	margin: 5px 10px 0 5px;
+	padding: 5px 12px 5px 25px;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+
+
+.nestedPopupClose:before {
+	position: absolute;
+	top: -3px;
+	left: 7px;
+	font-size: 27px;
+	content: "\2039";
+	text-shadow: 1px 0 #fff;
+}
+
+.nestedPopupContent{
+	max-height: 400px;
+	overflow: auto;
+	padding: 10px;
+	background:url(../UIImages/ajaxLoading.gif) no-repeat center #fff;
+
+}
