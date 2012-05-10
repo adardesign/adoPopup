@@ -1,7 +1,7 @@
 
 // adoPopup, Version 0.1
-// Copyright (c) April 12, 2010 adardesign.com
-// hoverTip is freely distributable under the terms of an MIT-style license
+// Copyright (c) May 10, 2012 adardesign.com
+// adoPopup is freely distributable under the terms of an MIT-style license
 // This means you are free to use the code, but please leave this copyright notice intact
 
 adoPopup = {
