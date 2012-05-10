@@ -2,8 +2,8 @@
 
 #adoPopup
 
+Allows user to open popup in DOM, also allows nested popups (popup in a popup), also works for images (jpg,gif,png)
 
-To init the Loader, assuming PATH points to the root folder
 ##Setup
 ###HTML
     <a href="path/To/reletive/Content" class="popup" rel="theClassNameYouWantThePopupShould have">
