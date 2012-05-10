@@ -1,4 +1,9 @@
-//(fix for the double click error bug, if someone complains)  https://gist.github.com/5a328d27aea9238cff8a
+
+// adoPopup, Version 0.1
+// Copyright (c) April 12, 2010 adardesign.com
+// hoverTip is freely distributable under the terms of an MIT-style license
+// This means you are free to use the code, but please leave this copyright notice intact
+
 adoPopup = {
 	init: function() {
 		var self = this;
@@ -191,4 +196,6 @@ adoPopup = {
 	},
 	closeNested: function() {}
 }
+
+
 
