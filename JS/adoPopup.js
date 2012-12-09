@@ -1,15 +1,13 @@
-
 // adoPopup, Version 0.1
 // Copyright (c) May 10, 2012 adardesign.com
 // adoPopup is freely distributable under the terms of an MIT-style license
 // This means you are free to use the code, but please leave this copyright notice intact
-
 adoPopup = {
 	init: function() {
 		var self = this;
 		$(document).on("click", ".popup", function(e) {
 			var jThis = $(this);
-			if (jThis.closest(".popupContent").length) {
+			if(jThis.closest(".popupContent").length) {
 				self.nested(jThis);
 				return false;
 			}
@@ -21,10 +19,10 @@ adoPopup = {
 				callback: jThis.attr("data-callback"),
 				callbackArgs: jThis.attr("data-callbackarguments") || "",
 				options: jThis.attr("data-options")
-			}
+			};
 			self.buildFrags();
-			return false
-		})
+			return false;
+		});
 	},
 	properties: {
 		popupPageFill: "popupPageFill",
@@ -40,7 +38,7 @@ adoPopup = {
 	},
 	buildFrags: function() {
 		var self = this;
-		if (this.cachedFrags) {
+		if(this.cachedFrags) {
 			this.customize();
 			return;
 		}
@@ -58,16 +56,16 @@ adoPopup = {
 		this.cachedFrags = true;
 		this.customize();
 	},
-	isImage:function(url){
-		return /(?:jpg|gif|png)/.test(url);
+	isImage: function(url) {
+		return (/(?:jpg|gif|png)/.test(url));
 	},
-	handleImage:function(){
+	handleImage: function() {
 		var self = this,
-			imageTemplate = "<div class='imageWrapper'><img src='"+self.eleData.href+"'/></div>";
-		
+			imageTemplate = "<div class='imageWrapper'><img src='" + self.eleData.href + "'/></div>";
+
 		self.popupContent.html(imageTemplate).addClass("loaded");
 		self.callback();
-		
+
 	},
 
 	customize: function() {
@@ -79,19 +77,19 @@ adoPopup = {
 		this.show();
 	},
 	addToPage: function() {
-		if($("."+this.properties.popupPageFill).length){
+		if($("." + this.properties.popupPageFill).length) {
 			return;
-		} 
+		}
 
 		$("body").append(this.popupPageFill);
 	},
 	fixPosition: function() {
 		var viewPortHeight = self.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-		if (viewPortHeight < 800) {
+		if(viewPortHeight < 800) {
 			this.popupBorder.addClass("viewPortLessThen800");
-			
+
 		}
-		if (viewPortHeight < 650) {
+		if(viewPortHeight < 650) {
 			this.popupBorder.addClass("viewPortLessThen650");
 		}
 	},
@@ -101,49 +99,50 @@ adoPopup = {
 			self.load();
 		});
 		$(document).on("keydown.adoPop", function(e) {
-			((e.keyCode ? e.keyCode : e.which) === 27) && self.close(e);
-		})
+			var noop = ((e.keyCode ? e.keyCode : e.which) === 27) && self.close(e);
+		});
 	},
 	load: function(nested) {
 		var self = this;
-		
+
 		// todo handle nested image
-		if(self.isImage(self.eleData.href)){
+		if(self.isImage(self.eleData.href)) {
 			self.handleImage();
 			return false;
 		}
-		
-		
+
+
 		$.ajax({
 			url: !nested ? this.eleData.href : this.nested.eleData.href
 		}).done(function(html) {
-			if (nested) {
+			if(nested) {
 				self.nested.content.html(html).addClass("loaded");
 				self.nestedCallback();
-				return false
+				return false;
 			}
 			self.popupContent.html(html).addClass("loaded");
 			self.callback();
 		}).fail(function() {
-			self.popupContent.html("<div class='errorLoadingPopup'> Sorry! The content of this popup failed to load</div>").addClass("loaded")
-		})
+			self.popupContent.html("<div class='errorLoadingPopup'> Sorry! The content of this popup failed to load</div>").addClass("loaded");
+		});
 	},
 	close: function(e) {
 		var target = $(e.target),
 			self = this;
-		if (self.hasNested) {
-			if (e.type !== "keydown" && target.closest("." + self.properties.nestedContainer).length && !target.is("." + self.properties.nestedClose)) {
-				return
+		if(self.hasNested) {
+			if(e.type !== "keydown" && target.closest("." + self.properties.nestedContainer).length && !target.is("." + self.properties.nestedClose)) {
+				return;
 			}
 			self.nested.container.fadeOut(300, function() {
 				self.nested.container.remove();
 				self.hasNested = false;
 				self.closeNested();
-			})
-			 if (!target.is("." + self.properties.popupExit)){ 
-			 	return}
+			});
+			if(!target.is("." + self.properties.popupExit)) {
+				return;
+			}
 		}
-		if (e.type !== "keydown" && target.closest("." + self.properties.popupBorder).length && !target.is("." + self.properties.popupExit)) {
+		if(e.type !== "keydown" && target.closest("." + self.properties.popupBorder).length && !target.is("." + self.properties.popupExit)) {
 			return;
 		}
 		this.popupPageFill.fadeOut(300, function() {
@@ -154,8 +153,8 @@ adoPopup = {
 		this.eleData = null;
 	},
 	callback: function() {
-		var callback = this.nested.eleData.callback;
-		$.isFunction(callback) && callback(this.eleData.callbackArgs);
+		var callback = this.nested.eleData.callback,
+		noop = $.isFunction(callback) && callback(this.eleData.callbackArgs);
 	},
 	hasNested: false,
 	nested: function(ele) {
@@ -168,7 +167,7 @@ adoPopup = {
 			callback: ele.attr("data-callback"),
 			callbackArgs: ele.attr("data-callbackarguments") || "",
 			options: ele.attr("data-options")
-		}
+		};
 		this.buildNested();
 	},
 	buildNested: function() {
@@ -178,24 +177,21 @@ adoPopup = {
 			maxHeight: $("." + self.properties.popupContent).css("maxHeight"),
 			minHeight: $("." + self.properties.popupContent).css("height")
 		});
-		self.nested.close = $("<div/>").addClass(self.properties.nestedClose+" button button-gray").text("Back").on("click", $.proxy(self.close, self));
+		self.nested.close = $("<div/>").addClass(self.properties.nestedClose + " button button-gray").text("Back").on("click", $.proxy(self.close, self));
 		self.nested.title = $("<h2/>").addClass(self.properties.nestedTitle).html(self.nested.eleData.title);
 		self.nested.title.append(self.nested.close);
 		self.nested.container.append(self.nested.title);
 
-		
+
 		self.nested.container.append(self.nested.content);
-		self.popupContent.after(self.nested.container)
+		self.popupContent.after(self.nested.container);
 		self.nested.container.fadeIn(100);
 		self.load("nested");
 	},
 	nestedCallback: function() {
-		var callback = this.nested.eleData.callback;
-		$.isFunction(callback) && callback(this.nested.eleData.callbackArgs);
+		var callback = this.nested.eleData.callback,
+		noop = $.isFunction(callback) && callback(this.nested.eleData.callbackArgs);
 
 	},
 	closeNested: function() {}
-}
-
-
-
+};
